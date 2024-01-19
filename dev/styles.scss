@@ -1,0 +1,65 @@
+// Importar estilos generales
+@import "../../styles";
+
+//Variables
+$size: 6rem;
+$on-color: #069406;
+$off-color: #DE2B2B;
+$bg-color: #69c7d8;
+$front-color: #eee;
+$transition: all .4s;
+
+body {
+  background : $bg-color;
+}
+
+h1 {
+  color: $front-color;
+}
+
+@mixin center {
+  margin-left : auto;
+  margin-right : auto;
+}
+
+// truco 
+
+.toggle-button {
+  display : none;
+  + label {
+    display : block;
+    width : $size * 2;
+    height : $size;
+    @include center;
+
+    background : rgba($off-color,.5);
+    border-radius : $size / 2;
+    box-shadow: 0 0 0 2px rgba($front-color,.5);
+
+    transition: $transition;
+
+    &:before {
+      content: "";
+      display : block;
+      width : $size;
+      height : $size;
+
+      border-radius : 50%;
+      background : $off-color;
+
+      position : relative;
+      left : 0;
+
+      transition: $transition;
+    }
+  }
+  &:checked {
+    + label {
+      background : rgba($on-color,.5);
+      &:before {
+        left : $size;
+        background : $on-color;
+      }
+    }
+  }
+}
